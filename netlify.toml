@@ -1,0 +1,3 @@
+[build]
+  command = "python app.py"  # Assurez-vous que c'est la bonne commande pour démarrer votre application Flask
+  publish = "chemin/vers/dossier/de/votre/application"  # Spécifiez le dossier de déploiement si nécessaire
