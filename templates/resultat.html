@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultats</title>
+</head>
+<body>
+    <h1>Votre choix</h1>
+    <p>Toxique :{{toxique}}</p>
+    <p>Obscène : {{obscene}}</p>
+    <p>Menaçant : {{menace}}</p>
+    <p>Insultant : {{insulte}} </p>
+
+    
+
+
+    <h2>Ligne correspondante au commentaire :</h2>
+    {{ comment_row_html | safe }}
+
+    <h3>Résultats</h3>
+    <p>Toxique : {% if is_toxic_correct %}Correct{% else %}Incorrect{% endif %}</p>
+    <p>Obscène : {% if is_obscene_correct %}Correct{% else %}Incorrect{% endif %}</p>
+    <p>Menaçant : {% if is_threatening_correct %}Correct{% else %}Incorrect{% endif %}</p>
+    <p>Insultant : {% if is_insult_correct %}Correct{% else %}Incorrect{% endif %}</p>
+
+</body>
+</html>

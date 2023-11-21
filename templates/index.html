@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Est ce toxique ?</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+        <h1 class="title">Qualifie ce commentaire selon les critères :</h1>
+    <div class="comment-box">
+        <p>{{ comment }}</p>
+    </div>
+    
+        <form action="/submit" method="post">
+            <div class="classification">
+                <div class="category">
+                <label for="toxic">Toxique</label>
+                <input type="radio" name="toxic" value="yes" required> Oui
+                <input type="radio" name="toxic" value="no" required> Non
+                </div>
+                <div class="category"> 
+                <label for="obscene">Obscène</label>
+                <input type="radio" name="obscene" value="yes"required> Oui
+                <input type="radio" name="obscene" value="no"required> Non
+                </div>
+                <div class="category">
+                <label for="threatening">Menaçant</label>
+                <input type="radio" name="threatening" value="yes"required> Oui
+                <input type="radio" name="threatening" value="no"required> Non
+                </div>
+                <div class="category">
+                <label for="insult">Insultant</label>
+                <input type="radio" name="insult" value="yes"required> Oui
+                <input type="radio" name="insult" value="no"required> Non
+                </div>
+            </div>
+            <div class="soumettre">
+                <button class="submit" type="submit" onclick="showClassification(event)">Soumettre</button>
+            </div>
+            
+        </form>
+   
+
+    <div class="resultat">
+        <div class="section">
+            <h2>Votre choix</h1>
+            <p>Toxique :{{toxique}}</p>
+            <p>Obscène : {{obscene}}</p>
+            <p>Menaçant : {{menace}}</p>
+            <p>Insultant : {{insulte}} </p>
+        </div>
+
+    
+
+    <div class="section">
+    <h2>Dans la BDD :</h2>
+    {{ comment_row_html | safe }}
+    </div>
+
+    <div class="section">
+    <h2>Comparaison</h3>
+    <p>Toxique : {% if is_toxic_correct %}Correct{% else %}Incorrect{% endif %}</p>
+    <p>Obscène : {% if is_obscene_correct %}Correct{% else %}Incorrect{% endif %}</p>
+    <p>Menaçant : {% if is_threatening_correct %}Correct{% else %}Incorrect{% endif %}</p>
+    <p>Insultant : {% if is_insult_correct %}Correct{% else %}Incorrect{% endif %}</p>
+    </div>
+    </div>
+
+
+    <div class="rejouer">
+    <form action="/generate_new_comment" method="post">
+        <button class="submit" type="submit">Rejouer</button>
+    </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector("#replay-button").addEventListener("click", function() {
+                window.location.href = '/generate_new_comment';
+            });
+        });
+    </script>
+</body>
+</html>
+
